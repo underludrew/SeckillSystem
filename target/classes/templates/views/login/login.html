@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<!--        Copyright (C)
+            All rights reserved
+            created by 颜育奇 at  12/07/2019-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+<!--    <link href="../../../static/img/manager.png" rel="icon" >-->
+<!--    <script type="text/javascript" src="../../../static/js/jquery-form.js"></script>-->
+
+    <title>后台登陆</title>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/loading.js}"></script>
+    <!-- Bootstrap core CSS -->
+    <link  th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link  th:href="@{/css/signin.css}" rel="stylesheet">
+    <link  th:href="@{/css/loading.css}" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link th:href="@{/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/ie8-responsive-file-warning.js}"></script><![endif]-->
+    <script th:src="@{/js/ie-emulation-modes-warning.js}"></script>
+    <script th:src="@{/js/signin.js}"></script>
+    <script th:src="@{/js/md5.js}"></script>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <form id="form1" class="form-signin" role="form" autocomplete="off" method="post">
+        <h2 class="form-signin-heading">Please sign</h2>
+        <label for="username" class="sr-only">Username</label>
+        <input name ="username"type="username" id="username" class="form-control"  required autofocus>
+        <label for="password" class="sr-only">Password</label>
+        <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button id="sub1" class="btn btn-lg btn-primary btn-block" type="button" onclick="do_login()">管理员登陆</button>
+      </form>
+      <form class="form-signin" role="form" autocomplete="off">
+        <button id="sub2" class="btn btn-lg btn-primary btn-block" type="button" >修改密码</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+  </body>
+</html>

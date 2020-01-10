@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--        Copyright (C)
+            All rights reserved
+            created by 颜育奇 at  12/07/2019-->
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/starter-template.css}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>秒杀商品列表</h1>
+      </div>
+
+      <div name = "goods_list">
+        <table class="table">
+
+          <tr>
+            <th>编号</th>
+            <td>商品缩略图</td>
+            <td>商品名称</td>
+            <td ></td>
+          </tr>
+<!--          <tr>-->
+<!--            <th>1</th>-->
+<!--            <td><img th:src="@{${g1_img}}" style="width: 100px"/></td>-->
+<!--            <td th:text="${goods_1}"></td>-->
+<!--            <td ><a>查看详情</a></td>-->
+<!--          </tr>-->
+
+<!--          <tr th:each="goods:${goodslist}">-->
+<!--            <th th:text="${goods.id}}"></th>-->
+<!--            <td ><img th:src="@{${goods.imgpath}}"></td>-->
+<!--            <td th:text="${goods.Goods_Name}"></td>-->
+<!--            <td ><a>查看详情</a></td>-->
+<!--          </tr>-->
+          <tr th:each="goods:${goodslist}">
+            <th th:text="${goodsStat.count}"></th>
+            <td ><img th:src="@{${goods.imgpath}}" style="width: 100px" /></td>
+            <td th:text="${goods.Goods_Name}"></td>
+            <td ><a th:onclick="toDetail([[${goods.id}]]);">查看详情</a></td>
+          </tr>
+
+        </table>
+      </div>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/goodslist.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
+    <script>window.jQuery || document.write('<script th:src="@{/js/jquery.min.js}"><\/script>')</script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+  </body>
+</html>

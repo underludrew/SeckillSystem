@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/starter-template.css}" rel="stylesheet">
+
+  </head>
+
+  <body onload="countdown()">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>商品详情</h1>
+      </div>
+      <div name = "detail">
+          <table class="table">
+            <input id="goods" th:value="${goods.id}" hidden>
+            <tr><th>名称</th><td th:text="${goods_name}"></td></tr>
+            <tr>
+            <td rowspan="3" width="50%"><img th:src="@{${imgpath}}" style="width: 400px"></td>
+            <th>价格</th>
+              <td th:text="${price}"></td>
+            </tr>
+            <tr>
+              <th>库存</th>
+              <td th:text="${store}"></td>
+              </tr>
+            <tr>
+                <td id="tip"><p th:text="'开始时间： '+${#dates.format(goods.start_date,'yyyy-MM-dd HH:mm:ss')}"></p></td>
+              <td>
+                <input id="count" th:value="${remainSeconds}" hidden>
+                <button class="btn-primary btn-lg " id="miaosha_btn" onclick="miaosha()">
+                  <span th:if="${statusCode} eq 0">还剩<span id="countdown" ></span>秒</span>
+                    <span th:if="${statusCode} eq 1">立即秒杀</span>
+                  <span th:if="${statusCode} eq 2">秒杀结束</span>
+                </button>
+<!--                <span th:if="${statusCode}==0"><button class="btn-primary btn-lg disabled" id="miaosha_btn"></button></span>-->
+<!--                <span th:if="${statusCode}==1"> <button class="btn-primary btn-lg" ></button></span>-->
+<!--                <span th:if="${statusCode}==-1"> <button class="btn-primary btn-lg disabled" >秒杀结束</button></span>-->
+              </td>
+              </tr>
+            </td>
+          </table>
+      </div><!-- ./detail-end-->
+    </div><!-- /.container -->
+<script>
+
+
+  function countdown() {
+      var remainSeconds = $("#count").val();
+      var timeout;
+      if(remainSeconds>0){
+        $("#miaosha_btn").attr("disabled",true);
+        timeout=setTimeout(function () {
+          $("#countdown").text((remainSeconds-1));
+          $("#count").val(remainSeconds-1);
+          countdown()
+        },1000)
+      }else if(remainSeconds == 0){
+        $("#tip").html("秒杀进行中");
+        $("#miaosha_btn").attr("disabled",false);
+        $("#miaosha_btn").html("立即秒杀")
+      }else{
+        if(timeout){
+          clearTimeout(timeout);
+        }
+        $("#tip").text("秒杀已结束");
+        $("#miaosha_btn").attr("disabled",true);
+      }
+  }
+</script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
+  </body>
+</html>
